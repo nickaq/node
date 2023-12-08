@@ -1,7 +1,5 @@
 'use strict';
 
-const RAITING_VALUES = 4;
-
 function Product() {
   this.id = '';
   this.name = '';
@@ -51,8 +49,10 @@ function Product() {
     for (let i = 0; i < this.sizes.length; i++) {
       if (this.sizes[i] === size) this.sizes.splice(this.sizes[i], 1);
     };
+
   }
   this.getAverageRating = function () {
+    const RAITING_VALUES = 4;
     let countAverageRating = 0;
     for (let i = 0; i < this.reviews.length; i++) {
       countAverageRating += this.reviews[i].rating.get('service');
@@ -90,7 +90,7 @@ function Review(r_id, author, date, comment, rating) {
     ['value', newRaiting.value],
     ['quality', newRaiting.quality]]);
 };
-
+ 
 function sortProducts(products, sortRule) {
   let sortedProducts = [];
   if (sortRule.toLowerCase() == "price") {
@@ -119,43 +119,3 @@ function searchProducts(products, search) {
   }
   return searchedProducts;
 }
-
-
-let sweater = new Product();
-sweater.setName("Sweater Weather");
-sweater.setDescription("comFORtable sweater");
-
-let socks = new Product();
-socks.setName("Gucci Socks");
-socks.setDescription("UncomfOrtable socks :) ");
-
-
-
-
-let shirt = new Product();
-
-let review1 = new Review('1', 'Mykyta Fesenko', '2023-12-01', 'Great product!', { service: 5, price: 5, value: 5, quality: 5 });
-let review2 = new Review('2', 'Alex Frost', '2012-12-22', 'Das ist schon', { service: 2, price: 2, value: 2, quality: 2 });
-let review3 = new Review('3', 'Marin Iden', '2011-01-01', 'Bad', { service: 2, price: 1, value: 4, quality: 1 });
-let review4 = new Review('4', 'Tim Cook', '2019-06-05', 'Bleat', { service: 1, price: 1, value: 1, quality: 3 });
-console.log(review1.getRating());
-shirt.setID('1');
-sweater.setID('2');
-socks.setID('3');
-shirt.addReview(review1);
-shirt.addReview(review3);
-shirt.addReview(review4);
-shirt.addReview(review2);
-shirt.setPrice(150);
-sweater.setPrice(200);
-socks.setPrice(100);
-shirt.setName("Shirt is overShit");
-shirt.setDescription("Super OverSized");
-shirt.setBrand("oversize");
-
-const products = [shirt, socks, sweater];
-// console.log(sortProducts(products, "id"));
-
-
-
-
